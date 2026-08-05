@@ -276,3 +276,68 @@ document.addEventListener("DOMContentLoaded", function() {
     checkCounters();
 
 });
+
+// ============================
+// FIREBASE DYNAMIC PRODUCTS
+// ============================
+const firebaseConfig = {
+    apiKey: "AIzaSyCmJlQvTZGfhhnqmEnC2c0WsTpOlmi6eU8",
+    authDomain: "rabha-stones.firebaseapp.com",
+    projectId: "rabha-stones",
+    storageBucket: "rabha-stones.firebasestorage.app",
+    messagingSenderId: "907668433965",
+    appId: "1:907668433965:web:6a551d0c32abdca9805ca4"
+};
+
+if (!firebase.apps.length) {
+    firebase.initializeApp(firebaseConfig);
+}
+
+const db = firebase.firestore();
+
+function loadDynamicProducts() {
+    db.collection("products").onSnapshot((snapshot) => {
+        fetchedProducts = {};
+        
+        const grids = {
+            rings: document.getElementById('grid-rings'),
+            necklaces: document.getElementById('grid-necklaces'),
+            bracelets: document.getElementById('grid-bracelets')
+        };
+        
+        for(let k in grids) { if(grids[k]) grids[k].innerHTML = ''; }
+
+        snapshot.forEach((doc) => {
+            const data = doc.data();
+            fetchedProducts[doc.id] = data;
+            
+            const grid = grids[data.category];
+            if (grid) {
+                const card = document.createElement('div');
+                card.className = 'p-card';
+                card.onclick = () => openModal(doc.id);
+                
+                const name = currentLang === 'ar' ? data.name_ar : data.name_en;
+                const price = data.price + (currentLang === 'ar' ? " جنيه" : " EGP");
+                
+                card.innerHTML = `
+                    <img src="${data.img}" alt="${name}">
+                    <div class="p-info">
+                        <h3>${name}</h3>
+                        <span class="p-price">${price}</span>
+                    </div>
+                `;
+                grid.appendChild(card);
+            }
+        });
+    });
+}
+
+const originalToggle = document.getElementById("lang-toggle").onclick;
+document.getElementById("lang-toggle").onclick = function() {
+    loadDynamicProducts();
+};
+
+window.addEventListener('DOMContentLoaded', () => {
+    loadDynamicProducts();
+});
