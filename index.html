@@ -1,0 +1,243 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rabha Stones | Timeless Luxury</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@300;400;600;700;900&family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400;1,600&family=Tajawal:wght@300;400;500;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+
+    <!-- Firebase SDKs -->
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/9.22.1/firebase-firestore-compat.js"></script>
+</head>
+<body>
+
+    <!-- Preloader -->
+    <div id="preloader">
+        <div class="loader-diamond">
+            <div class="diamond-shape"></div>
+            <p>Rabha Stones</p>
+        </div>
+    </div>
+
+    <!-- Scroll Progress -->
+    <div id="scroll-progress"></div>
+
+    <!-- Navbar -->
+    <nav class="navbar" id="navbar">
+        <div class="logo">
+            <span class="logo-diamond">&#9670;</span>
+            Rabha <span class="logo-sub">Stones</span>
+        </div>
+        <ul class="nav-links" id="nav-links">
+            <li><a href="#story" data-i18n="nav_story">Our Story</a></li>
+            <li><a href="#rings" data-i18n="nav_rings">Rings</a></li>
+            <li><a href="#necklaces" data-i18n="nav_necklaces">Necklaces</a></li>
+            <li><a href="#bracelets" data-i18n="nav_bracelets">Bracelets</a></li>
+            <li><a href="#why-us" data-i18n="nav_why">Why Us</a></li>
+        </ul>
+        <div class="nav-actions">
+            <button id="lang-toggle" class="btn-lang">عربي</button>
+            <a href="https://wa.me/201032802206" class="btn-contact" data-i18n="nav_contact" target="_blank">Contact Us</a>
+            <button class="hamburger" id="hamburger"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
+    <!-- Hero -->
+    <header class="hero">
+        <div class="hero-overlay"></div>
+        <div class="hero-content">
+            <div class="hero-badge" data-i18n="hero_badge">&#10022; Premium Jewelry Since 2010 &#10022;</div>
+            <h1>
+                <span data-i18n="hero_title_1">Luxury that Embraces</span><br>
+                <span class="gold-shimmer" data-i18n="hero_title_2">the Soul</span>
+            </h1>
+            <p class="hero-desc" data-i18n="hero_desc">An exclusive collection of rare gemstones and fine jewelry, meticulously crafted for those who appreciate exceptional beauty.</p>
+            <div class="hero-buttons">
+                <a href="#rings" class="btn-primary" data-i18n="hero_btn">Explore Collection</a>
+                <a href="#story" class="btn-outline" data-i18n="hero_btn2">Read Our Story</a>
+            </div>
+        </div>
+        <div class="scroll-down">
+            <div class="scroll-mouse"><div class="scroll-wheel"></div></div>
+            <span data-i18n="scroll_text">Scroll to Discover</span>
+        </div>
+    </header>
+
+    <!-- Marquee -->
+    <div class="marquee">
+        <div class="marquee-track">
+            <span>&#9670; 100% Natural Gemstones</span>
+            <span>&#9670; Exclusive Handcrafted</span>
+            <span>&#9670; Certificate of Authenticity</span>
+            <span>&#9670; Free Delivery Nationwide</span>
+            <span>&#9670; Lifetime Guarantee</span>
+            <span>&#9670; 100% Natural Gemstones</span>
+            <span>&#9670; Exclusive Handcrafted</span>
+            <span>&#9670; Certificate of Authenticity</span>
+            <span>&#9670; Free Delivery Nationwide</span>
+            <span>&#9670; Lifetime Guarantee</span>
+        </div>
+    </div>
+
+    <!-- Story -->
+    <section id="story" class="story-section">
+        <div class="story-wrap">
+            <div class="story-img-wrap">
+                <img src="https://images.unsplash.com/photo-1589674781759-c21c37956a44?q=80&w=800&auto=format&fit=crop" alt="Gemstones">
+                <div class="story-years" data-i18n="story_badge">+15 Years of Expertise</div>
+            </div>
+            <div class="story-text">
+                <span class="tag" data-i18n="story_tag">Our Story</span>
+                <h2 data-i18n="story_title">From the Heart of Earth to Your Crown</h2>
+                <p data-i18n="story_p1">Rabha Stones began with a deep passion for finding the rarest and most beautiful gemstones in the world. We don't just sell jewelry - we offer a piece of history.</p>
+                <p data-i18n="story_p2">Each stone carries a unique energy and story, refined by master artisans. Our journey starts from ruby mines in Sri Lanka and emerald mines in Colombia, all the way to your hands.</p>
+                <div class="stats-row">
+                    <div class="stat-box"><span class="stat-num" data-count="1500">0</span><span class="stat-lbl" data-i18n="stat_clients">Happy Clients</span></div>
+                    <div class="stat-box"><span class="stat-num" data-count="320">0</span><span class="stat-lbl" data-i18n="stat_pieces">Luxury Pieces</span></div>
+                    <div class="stat-box"><span class="stat-num" data-count="15">0</span><span class="stat-lbl" data-i18n="stat_years">Years of Expertise</span></div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Rings -->
+    <section id="rings" class="products-section">
+        <span class="tag center" data-i18n="rings_tag">The Royal Collection</span>
+        <h2 class="sec-title" data-i18n="rings_title">Rings Collection</h2>
+        <p class="sec-sub" data-i18n="rings_subtitle">Each ring tells a king's tale, crafted to immortalize your precious moments.</p>
+        <div class="products-grid" id="grid-rings">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <!-- Parallax Quote -->
+    <div class="parallax-quote" style="background-image:url('https://images.unsplash.com/photo-1617038220319-276d3cfab638?q=80&w=2000&auto=format&fit=crop');">
+        <div class="pq-overlay"></div>
+        <p data-i18n="divider_quote">"Gemstones aren't just ornaments - they are pieces of eternity"</p>
+    </div>
+
+    <!-- Necklaces -->
+    <section id="necklaces" class="products-section">
+        <span class="tag center" data-i18n="necklaces_tag">Timeless Elegance</span>
+        <h2 class="sec-title" data-i18n="necklaces_title">Breathtaking Necklaces</h2>
+        <p class="sec-sub" data-i18n="necklaces_subtitle">A unique collection of handcrafted necklaces with the finest natural gemstones.</p>
+        <div class="products-grid" id="grid-necklaces">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <!-- Bracelets -->
+    <section id="bracelets" class="products-section">
+        <span class="tag center" data-i18n="bracelets_tag">Irresistible Sparkle</span>
+        <h2 class="sec-title" data-i18n="bracelets_title">Ultimate Luxury Bracelets</h2>
+        <p class="sec-sub" data-i18n="bracelets_subtitle">Bracelets that shine on your wrist, telling the story of your refined taste.</p>
+        <div class="products-grid" id="grid-bracelets">
+            <!-- Dynamic content -->
+        </div>
+    </section>
+
+    <!-- Why Us -->
+    <section id="why-us" class="why-section">
+        <span class="tag center" data-i18n="why_tag">What Sets Us Apart</span>
+        <h2 class="sec-title" data-i18n="why_title">Why Rabha?</h2>
+        <div class="why-grid">
+            <div class="why-card"><div class="why-icon">&#128142;</div><h3 data-i18n="why_1_title">100% Natural Stones</h3><p data-i18n="why_1_desc">Every stone is natural with certification from accredited labs.</p></div>
+            <div class="why-card"><div class="why-icon">&#9997;</div><h3 data-i18n="why_2_title">Handcrafted</h3><p data-i18n="why_2_desc">Each piece is handcrafted by master goldsmiths.</p></div>
+            <div class="why-card"><div class="why-icon">&#128737;</div><h3 data-i18n="why_3_title">Lifetime Guarantee</h3><p data-i18n="why_3_desc">Comprehensive guarantee on all our pieces.</p></div>
+            <div class="why-card"><div class="why-icon">&#128666;</div><h3 data-i18n="why_4_title">Free Delivery</h3><p data-i18n="why_4_desc">Fully insured free delivery across all cities.</p></div>
+        </div>
+    </section>
+
+    <!-- Testimonials -->
+    <section class="reviews-section">
+        <span class="tag center" data-i18n="test_tag">Client Reviews</span>
+        <h2 class="sec-title" data-i18n="test_title">What They Said About Us</h2>
+        <div class="reviews-grid">
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p data-i18n="test_1_text">"I bought a silver ring and it was way better than the photos. Excellent quality, clean finish, and delivery arrived on time."</p>
+                <div class="review-author"><div class="author-circle">M</div><div><strong data-i18n="test_1_name">Mahmoud Hassan</strong><span data-i18n="test_1_city">Cairo</span></div></div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p data-i18n="test_2_text">"I ordered a chain as a gift for my fiancee and she was so happy with it. The packaging was chic and the service was professional."</p>
+                <div class="review-author"><div class="author-circle">K</div><div><strong data-i18n="test_2_name">Karim Abdelrahman</strong><span data-i18n="test_2_city">Alexandria</span></div></div>
+            </div>
+            <div class="review-card">
+                <div class="review-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</div>
+                <p data-i18n="test_3_text">"First time ordering online and I was hesitant, but the product was excellent. Quality is worth it and the price is fair."</p>
+                <div class="review-author"><div class="author-circle">S</div><div><strong data-i18n="test_3_name">Sara Mohamed</strong><span data-i18n="test_3_city">Mansoura</span></div></div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal -->
+    <div id="modal" class="modal-bg" style="display:none;">
+        <div class="modal-box">
+            <button class="modal-x" id="modal-close-btn">&#10005;</button>
+            <div class="modal-grid">
+                <div class="modal-img-side"><img id="modal-img" src="" alt=""></div>
+                <div class="modal-info-side">
+                    <span class="modal-tag" data-i18n="modal_badge">&#10022; Exclusive Piece &#10022;</span>
+                    <h2 id="modal-name"></h2>
+                    <div class="modal-rating">
+                        <span class="modal-stars">&#9733;&#9733;&#9733;&#9733;&#9733;</span>
+                        <span class="modal-rating-text" id="modal-rating-text"></span>
+                    </div>
+                    <p class="modal-price-tag" id="modal-price"></p>
+                    <p class="modal-description" id="modal-desc"></p>
+                    <div class="modal-specs">
+                        <div class="spec-item"><span class="spec-icon">&#128142;</span> <span data-i18n="feat_natural">100% Natural Stone</span></div>
+                        <div class="spec-item"><span class="spec-icon">&#10024;</span> <span data-i18n="feat_handmade">Handcrafted</span></div>
+                        <div class="spec-item"><span class="spec-icon">&#128220;</span> <span data-i18n="feat_cert">Certificate of Authenticity</span></div>
+                        <div class="spec-item"><span class="spec-icon">&#128666;</span> <span data-i18n="feat_shipping">Free Shipping</span></div>
+                    </div>
+                    <a id="modal-wa" href="#" class="btn-primary modal-btn" target="_blank" data-i18n="order_whatsapp">Order Now via WhatsApp</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer id="contact">
+        <div class="footer-grid">
+            <div class="f-col">
+                <div class="f-logo"><span>&#9670;</span> Rabha Stones</div>
+                <p data-i18n="footer_about">We believe everyone deserves a piece that reflects their uniqueness. Rabha Stones is your destination for true luxury.</p>
+            </div>
+            <div class="f-col">
+                <h4 data-i18n="footer_links_title">Quick Links</h4>
+                <a href="#story" data-i18n="nav_story">Our Story</a>
+                <a href="#rings" data-i18n="nav_rings">Rings</a>
+                <a href="#necklaces" data-i18n="nav_necklaces">Necklaces</a>
+                <a href="#bracelets" data-i18n="nav_bracelets">Bracelets</a>
+            </div>
+            <div class="f-col">
+                <h4 data-i18n="footer_contact_title">Contact Us</h4>
+                <a href="https://wa.me/201032802206" data-i18n="footer_whatsapp">WhatsApp: +201032802206</a>
+                <a href="mailto:elfrouna@gmail.com">elfrouna@gmail.com</a>
+                <a href="#" data-i18n="footer_location">Egypt, Alexandria</a>
+            </div>
+        </div>
+        <div class="footer-bar">
+            <p data-i18n="footer_copy">All Rights Reserved &copy; <a href="https://www.linkedin.com/in/ashraf-alrashidi/" target="_blank" class="dev-link">Ashraf Alrashidi</a> 2026</p>
+            <p>Developed by <a href="https://www.linkedin.com/in/ashraf-alrashidi/" target="_blank" class="dev-link">Ashraf Alrashidi</a></p>
+        </div>
+    </footer>
+
+    <!-- Floating WhatsApp Button -->
+    <a href="https://wa.me/201032802206" class="floating-wa" target="_blank">
+        <span class="wa-icon">💬</span>
+        <span data-i18n="floating_wa">Contact Us</span>
+    </a>
+
+    <!-- Back to top -->
+    <button id="topBtn" class="top-btn" style="display:none;">&#9650;</button>
+
+    <script src="main.js"></script>
+</body>
+</html>
