@@ -278,65 +278,65 @@ document.addEventListener("DOMContentLoaded", function() {
 });
 
 // ============================
-// FIREBASE DYNAMIC PRODUCTS
+// SUPABASE DYNAMIC PRODUCTS
 // ============================
-const firebaseConfig = {
-    apiKey: "AIzaSyCmJlQvTZGfhhnqmEnC2c0WsTpOlmi6eU8",
-    authDomain: "rabha-stones.firebaseapp.com",
-    projectId: "rabha-stones",
-    storageBucket: "rabha-stones.firebasestorage.app",
-    messagingSenderId: "907668433965",
-    appId: "1:907668433965:web:6a551d0c32abdca9805ca4"
-};
+const supabaseUrl = 'https://koxvmmkzwtluhhhlisfm.supabase.co';
+const supabaseKey = 'eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpc3MiOiJzdXBhYmFzZSIsInJlZiI6ImtveHZtbWt6d3RsdWhoaGxpc2ZtIiwicm9sZSI6ImFub24iLCJpYXQiOjE3ODYwMjMyOTksImV4cCI6MjEwMTU5OTI5OX0.AKBe5mSR8l8_vG0ey1x_mWtBWfBP_axKfO3CDczIj0k';
+const supabaseClient = supabase.createClient(supabaseUrl, supabaseKey);
 
-if (!firebase.apps.length) {
-    firebase.initializeApp(firebaseConfig);
-}
-
-const db = firebase.firestore();
-
-function loadDynamicProducts() {
-    db.collection("products").onSnapshot((snapshot) => {
-        fetchedProducts = {};
+async function loadDynamicProducts() {
+    const { data: products, error } = await supabaseClient
+        .from('products')
+        .select('*')
+        .order('created_at', { ascending: false });
         
-        const grids = {
-            rings: document.getElementById('grid-rings'),
-            necklaces: document.getElementById('grid-necklaces'),
-            bracelets: document.getElementById('grid-bracelets')
-        };
-        
-        for(let k in grids) { if(grids[k]) grids[k].innerHTML = ''; }
+    if (error) {
+        console.error("Error fetching products:", error);
+        return;
+    }
 
-        snapshot.forEach((doc) => {
-            const data = doc.data();
-            fetchedProducts[doc.id] = data;
+    fetchedProducts = {};
+    
+    const grids = {
+        rings: document.getElementById('grid-rings'),
+        necklaces: document.getElementById('grid-necklaces'),
+        bracelets: document.getElementById('grid-bracelets')
+    };
+    
+    for(let k in grids) { if(grids[k]) grids[k].innerHTML = ''; }
+
+    products.forEach((data) => {
+        fetchedProducts[data.id] = data;
+        
+        const grid = grids[data.category];
+        if (grid) {
+            const card = document.createElement('div');
+            card.className = 'p-card';
+            card.onclick = () => openModal(data.id);
             
-            const grid = grids[data.category];
-            if (grid) {
-                const card = document.createElement('div');
-                card.className = 'p-card';
-                card.onclick = () => openModal(doc.id);
-                
-                const name = currentLang === 'ar' ? data.name_ar : data.name_en;
-                const price = data.price + (currentLang === 'ar' ? " جنيه" : " EGP");
-                
-                card.innerHTML = `
-                    <img src="${data.img}" alt="${name}">
-                    <div class="p-info">
-                        <h3>${name}</h3>
-                        <span class="p-price">${price}</span>
-                    </div>
-                `;
-                grid.appendChild(card);
-            }
-        });
+            const name = currentLang === 'ar' ? data.name_ar : data.name_en;
+            const price = data.price + (currentLang === 'ar' ? " جنيه" : " EGP");
+            
+            card.innerHTML = `
+                <img src="${data.img}" alt="${name}">
+                <div class="p-info">
+                    <h3>${name}</h3>
+                    <span class="p-price">${price}</span>
+                </div>
+            `;
+            grid.appendChild(card);
+        }
     });
 }
 
-const originalToggle = document.getElementById("lang-toggle").onclick;
-document.getElementById("lang-toggle").onclick = function() {
-    loadDynamicProducts();
-};
+const langToggleBtn = document.getElementById("lang-toggle");
+if(langToggleBtn) {
+    const originalToggle = langToggleBtn.onclick;
+    langToggleBtn.onclick = function(e) {
+        if(originalToggle) originalToggle(e);
+        loadDynamicProducts();
+    };
+}
 
 window.addEventListener('DOMContentLoaded', () => {
     loadDynamicProducts();
