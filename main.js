@@ -140,7 +140,7 @@ function openModal(id) {
     document.getElementById("modal-desc").textContent = currentLang === 'ar' ? item.desc_ar : item.desc_en;
     document.getElementById("modal-rating-text").textContent = item.rating + " (" + item.reviews + (currentLang === 'ar' ? " تقييم)" : " reviews)");
     var name = item.name_en;
-    document.getElementById("modal-wa").href = "https://wa.me/201032802206?text=Hi, I am interested in: " + name;
+    document.getElementById("modal-wa").href = "https://wa.me/201099072864?text=Hi, I am interested in: " + name;
     modal.style.display = "flex";
     document.body.style.overflow = "hidden";
 }
